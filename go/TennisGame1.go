@@ -29,16 +29,7 @@ func (game *tennisGame1) GetScore() string {
 	if game.player1Points == game.player2Points {
 		score = game.tieScore()
 	} else if game.player1Points >= 4 || game.player2Points >= 4 {
-		pointDifference := game.player1Points - game.player2Points
-		if pointDifference == 1 {
-			score = "Advantage player1"
-		} else if pointDifference == -1 {
-			score = "Advantage player2"
-		} else if pointDifference >= 2 {
-			score = "Win for player1"
-		} else {
-			score = "Win for player2"
-		}
+		score = game.advantageOrWinScore()
 	} else {
 		for i := 1; i < 3; i++ {
 			if i == 1 {
@@ -73,4 +64,16 @@ func (game *tennisGame1) tieScore() string {
 	default:
 		return "Deuce"
 	}
+}
+
+func (game *tennisGame1) advantageOrWinScore() string {
+	pointDifference := game.player1Points - game.player2Points
+	if pointDifference == 1 {
+		return "Advantage player1"
+	} else if pointDifference == -1 {
+		return "Advantage player2"
+	} else if pointDifference >= 2 {
+		return "Win for player1"
+	}
+	return "Win for player2"
 }
