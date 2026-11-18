@@ -33,10 +33,6 @@ func (game *tennisGame1) GetScore() string {
 	return game.runningScore()
 }
 
-func (game *tennisGame1) runningScore() string {
-	return pointName(game.player1Points) + "-" + pointName(game.player2Points)
-}
-
 func (game *tennisGame1) tieScore() string {
 	if game.player1Points >= 3 {
 		return "Deuce"
@@ -54,6 +50,10 @@ func (game *tennisGame1) advantageOrWinScore() string {
 		return "Win for player1"
 	}
 	return "Win for player2"
+}
+
+func (game *tennisGame1) runningScore() string {
+	return pointName(game.player1Points) + "-" + pointName(game.player2Points)
 }
 
 func pointName(points int) string {
