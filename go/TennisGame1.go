@@ -27,16 +27,7 @@ func (game *tennisGame1) GetScore() string {
 	score := ""
 	tempScore := 0
 	if game.player1Points == game.player2Points {
-		switch game.player1Points {
-		case 0:
-			score = "Love-All"
-		case 1:
-			score = "Fifteen-All"
-		case 2:
-			score = "Thirty-All"
-		default:
-			score = "Deuce"
-		}
+		score = game.tieScore()
 	} else if game.player1Points >= 4 || game.player2Points >= 4 {
 		pointDifference := game.player1Points - game.player2Points
 		if pointDifference == 1 {
@@ -69,4 +60,17 @@ func (game *tennisGame1) GetScore() string {
 		}
 	}
 	return score
+}
+
+func (game *tennisGame1) tieScore() string {
+	switch game.player1Points {
+	case 0:
+		return "Love-All"
+	case 1:
+		return "Fifteen-All"
+	case 2:
+		return "Thirty-All"
+	default:
+		return "Deuce"
+	}
 }
