@@ -38,16 +38,7 @@ func (game *tennisGame1) GetScore() string {
 				score += "-"
 				tempScore = game.player2Points
 			}
-			switch tempScore {
-			case 0:
-				score += "Love"
-			case 1:
-				score += "Fifteen"
-			case 2:
-				score += "Thirty"
-			case 3:
-				score += "Forty"
-			}
+			score += pointName(tempScore)
 		}
 	}
 	return score
@@ -76,4 +67,18 @@ func (game *tennisGame1) advantageOrWinScore() string {
 		return "Win for player1"
 	}
 	return "Win for player2"
+}
+
+func pointName(points int) string {
+	switch points {
+	case 0:
+		return "Love"
+	case 1:
+		return "Fifteen"
+	case 2:
+		return "Thirty"
+	case 3:
+		return "Forty"
+	}
+	return ""
 }
