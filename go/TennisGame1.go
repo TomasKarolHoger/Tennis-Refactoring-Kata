@@ -38,16 +38,10 @@ func (game *tennisGame1) runningScore() string {
 }
 
 func (game *tennisGame1) tieScore() string {
-	switch game.player1Points {
-	case 0:
-		return "Love-All"
-	case 1:
-		return "Fifteen-All"
-	case 2:
-		return "Thirty-All"
-	default:
+	if game.player1Points >= 3 {
 		return "Deuce"
 	}
+	return pointName(game.player1Points) + "-All"
 }
 
 func (game *tennisGame1) advantageOrWinScore() string {
