@@ -24,15 +24,13 @@ func (game *tennisGame1) WonPoint(playerName string) {
 }
 
 func (game *tennisGame1) GetScore() string {
-	score := ""
 	if game.player1Points == game.player2Points {
-		score = game.tieScore()
-	} else if game.player1Points >= 4 || game.player2Points >= 4 {
-		score = game.advantageOrWinScore()
-	} else {
-		score = game.runningScore()
+		return game.tieScore()
 	}
-	return score
+	if game.player1Points >= 4 || game.player2Points >= 4 {
+		return game.advantageOrWinScore()
+	}
+	return game.runningScore()
 }
 
 func (game *tennisGame1) runningScore() string {
